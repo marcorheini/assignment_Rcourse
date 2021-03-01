@@ -15,13 +15,96 @@ Welcome to my research website.
 
 
 
+## Preparation
 
+```{r}
+library(openintro)
+library(tidyverse)
+library(broom)
+```
+
+
+
+
+
+
+## 7. Use the hfi dataset from the `openintro` package
+```{r}
+data(hfi)
+
+hfi_2016 <- hfi %>% filter(year=='2016')
+
+```
+
+## 8. Fit a new model that uses  `pf_expression_control` to predict `hf_score`, or the total human freedom score.
+```{r}
+
+linreg <- lm(hf_score~pf_expression_control, data=hfi_2016)
+
+tidy(linreg)
+```
+
+
+
+
+## 9. Again add region to the model from Q4. Compare the slope and $R^2$ with the model from Q4.
 
 ```{r}
 
 
-## here i will do the assignments
+linreg_region <- lm(hf_score~pf_expression_control + region, data=hfi_2016)
 
+comp <- tibble(category=c('intercept', 'slope', 'r_squared'),
+              `score~expr_ctrl`=linreg$coefficients %>% 
+                 as.numeric() %>%
+                 c(.,summary(linreg)$r.squared),
+              `score~expr_ctrl+region`=linreg_region$coefficients[1:2] %>% 
+                 as.numeric()%>%
+                 c(.,summary(linreg_region)$r.squared),)
+
+comp
+
+```
+
+
+The slope decreased for the model that includes the "region" while the R-squared value increased 
+
+
+## 10. Finally fit a model with `ef_money` and `pf_expression_control` as exposures and `hf_score` as outcome.  Compare the slope and $R^2$ from the models from Q1. Could `ef_money` be a confounder? 
+
+```{r}
+
+linreg_money <- lm(hf_score~pf_expression_control + ef_money, data=hfi_2016)
+
+comp <- mutate(comp, `score~expr_ctrl+money`=linreg_money$coefficients[1:2] %>% 
+                 as.numeric() %>%
+                 c(.,summary(linreg_money)$r.squared))
+
+```
+
+
+
+
+## 11. Use a linear regression model (and scatter plot) with  `ef_money` as exposure and `pf_expression_control` as outcome, to study whether `ef_money` has an association with `pf_expression_control` as well. This might validate our finding that `ef_money` is a confounder between  `pf_expression_control` as exposure and 
+`hf_score` as outcome from Q6.
+
+
+```{r}
+
+linreg_final <- lm(pf_expression_control~ef_money, data=hfi_2016)
+summary(linreg_final)
+
+
+ggplot(hfi_2016, aes(x=ef_money, 
+                 y=pf_expression_control))+
+  geom_point()+
+  geom_smooth(method='lm', se=F)
+
+comp <- mutate(comp, `expr_ctrl~money`=linreg_final$coefficients[1:2] %>% 
+                 as.numeric() %>%
+                 c(.,summary(linreg_final)$r.squared))
+
+comp
 
 ```
 
