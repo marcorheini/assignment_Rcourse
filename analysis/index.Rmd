@@ -9,3 +9,26 @@ editor_options:
 ---
 
 Welcome to my research website.
+
+
+
+
+
+
+
+
+```{r}
+
+
+## here i will do the assignments
+
+
+```
+
+
+
+
+
+
+
+
