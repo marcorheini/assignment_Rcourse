@@ -335,7 +335,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-03-01
+<strong>Last updated:</strong> 2021-03-02
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -426,16 +426,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetreeacc054221f0fa4db5c686fdee013da8e9971ae5dtargetblankacc0542a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/marcorheini/assignment_Rcourse/tree/acc054221f0fa4db5c686fdee013da8e9971ae5d" target="_blank">acc0542</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetree0bc7a464df719a3334ad0e161e77aecce3442809targetblank0bc7a46a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/marcorheini/assignment_Rcourse/tree/0bc7a464df719a3334ad0e161e77aecce3442809" target="_blank">0bc7a46</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetreeacc054221f0fa4db5c686fdee013da8e9971ae5dtargetblankacc0542a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetree0bc7a464df719a3334ad0e161e77aecce3442809targetblank0bc7a46a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/marcorheini/assignment_Rcourse/tree/acc054221f0fa4db5c686fdee013da8e9971ae5d" target="_blank">acc0542</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/marcorheini/assignment_Rcourse/tree/0bc7a464df719a3334ad0e161e77aecce3442809" target="_blank">0bc7a46</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -481,6 +481,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/marcorheini/assignment_Rcourse/blob/0bc7a464df719a3334ad0e161e77aecce3442809/analysis/index.Rmd" target="_blank">0bc7a46</a>
+</td>
+<td>
+marcorheini
+</td>
+<td>
+2021-03-02
+</td>
+<td>
+workflowr::wflow_publish(files = “analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/marcorheini/assignment_Rcourse/3b78c0f8f19dcf6b47733a2c68c2e11933d492ec/docs/index.html" target="_blank">3b78c0f</a>
+</td>
+<td>
+marcorheini
+</td>
+<td>
+2021-03-01
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -589,94 +623,79 @@ v readr   1.4.0     v forcats 0.5.0</code></pre>
 <pre><code>-- Conflicts ------------------------------------------ tidyverse_conflicts() --
 x dplyr::filter() masks stats::filter()
 x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(broom)</code></pre>
 </div>
-<div id="use-the-hfi-dataset-from-the-openintro-package" class="section level2">
-<h2>7. Use the hfi dataset from the <code>openintro</code> package</h2>
+<div id="assignment" class="section level2">
+<h2>Assignment</h2>
+<div id="use-the-hfi-dataset-from-the-openintro-package" class="section level4">
+<h4>7. Use the hfi dataset from the <code>openintro</code> package</h4>
 <pre class="r"><code>data(hfi)
-
+# we will use only the data from 2016 to avoid problems
 hfi_2016 &lt;- hfi %&gt;% filter(year==&#39;2016&#39;)</code></pre>
 </div>
-<div id="fit-a-new-model-that-uses-pf_expression_control-to-predict-hf_score-or-the-total-human-freedom-score." class="section level2">
-<h2>8. Fit a new model that uses <code>pf_expression_control</code> to predict <code>hf_score</code>, or the total human freedom score.</h2>
-<pre class="r"><code>linreg &lt;- lm(hf_score~pf_expression_control, data=hfi_2016)
-
-tidy(linreg)</code></pre>
-<pre><code># A tibble: 2 x 5
-  term                  estimate std.error statistic  p.value
-  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)              5.05     0.123       41.1 5.97e-87
-2 pf_expression_control    0.368    0.0224      16.5 2.73e-36</code></pre>
+<div id="fit-a-new-model-that-uses-pf_expression_control-to-predict-hf_score-or-the-total-human-freedom-score." class="section level4">
+<h4>8. Fit a new model that uses <code>pf_expression_control</code> to predict <code>hf_score</code>, or the total human freedom score.</h4>
+<pre class="r"><code># fit the model
+Q8 &lt;- lm(hf_score~pf_expression_control, data=hfi_2016)</code></pre>
 </div>
-<div id="again-add-region-to-the-model-from-q4.-compare-the-slope-and-r2-with-the-model-from-q4." class="section level2">
-<h2>9. Again add region to the model from Q4. Compare the slope and <span class="math inline">\(R^2\)</span> with the model from Q4.</h2>
-<pre class="r"><code>linreg_region &lt;- lm(hf_score~pf_expression_control + region, data=hfi_2016)
-
-comp &lt;- tibble(category=c(&#39;intercept&#39;, &#39;slope&#39;, &#39;r_squared&#39;),
-              `score~expr_ctrl`=linreg$coefficients %&gt;% 
-                 as.numeric() %&gt;%
-                 c(.,summary(linreg)$r.squared),
-              `score~expr_ctrl+region`=linreg_region$coefficients[1:2] %&gt;% 
-                 as.numeric()%&gt;%
-                 c(.,summary(linreg_region)$r.squared),)
-
-comp</code></pre>
-<pre><code># A tibble: 3 x 3
-  category  `score~expr_ctrl` `score~expr_ctrl+region`
-  &lt;chr&gt;                 &lt;dbl&gt;                    &lt;dbl&gt;
-1 intercept             5.05                     6.05 
-2 slope                 0.368                    0.275
-3 r_squared             0.629                    0.754</code></pre>
-<p>The slope decreased for the model that includes the “region” while the R-squared value increased</p>
+<div id="again-add-region-to-the-model-from-q4.-compare-the-slope-and-r2-with-the-model-from-q4." class="section level4">
+<h4>9. Again add region to the model from Q4. Compare the slope and <span class="math inline">\(R^2\)</span> with the model from Q4.</h4>
+<pre class="r"><code># define a function that views the most important information
+view_param &lt;- function(models){
+  sapply(models, function(x){
+    c(x$coefficients[2] %&gt;% round(3), # slope
+      summary(x)$r.squared %&gt;% round(3), # r_squared
+      summary(x)$coefficients[2,4] %&gt;% formatC(digits = 2) # p-value
+    )  %&gt;% 
+      set_names(nm=c(&#39;slope&#39;, &#39;r_squared&#39;, &#39;p_value&#39;)) 
+  }) %&gt;% 
+    as.data.frame() %&gt;%
+    set_names(nm=paste0(&#39;m&#39;, c(1:length(models))))
+}
+# the model from Q4 was to predict the total score by using the variable ef_money
+Q4 &lt;- lm(hf_score~ef_money, data=hfi_2016)
+# fit the new models containing the region as exposure
+Q9 &lt;- lm(hf_score~ef_money + region, data=hfi_2016)
+#view most important information
+view_param(list(Q4, Q9))</code></pre>
+<pre><code>               m1      m2
+slope       0.504   0.364
+r_squared   0.425   0.744
+p_value   5.5e-21 1.3e-18</code></pre>
+<p>The slope decreased for the model that includes the “region” while the <span class="math inline">\(R^2\)</span> value increased</p>
 </div>
-<div id="finally-fit-a-model-with-ef_money-and-pf_expression_control-as-exposures-and-hf_score-as-outcome.-compare-the-slope-and-r2-from-the-models-from-q1.-could-ef_money-be-a-confounder" class="section level2">
-<h2>10. Finally fit a model with <code>ef_money</code> and <code>pf_expression_control</code> as exposures and <code>hf_score</code> as outcome. Compare the slope and <span class="math inline">\(R^2\)</span> from the models from Q1. Could <code>ef_money</code> be a confounder?</h2>
-<pre class="r"><code>linreg_money &lt;- lm(hf_score~pf_expression_control + ef_money, data=hfi_2016)
-
-comp &lt;- mutate(comp, `score~expr_ctrl+money`=linreg_money$coefficients[1:2] %&gt;% 
-                 as.numeric() %&gt;%
-                 c(.,summary(linreg_money)$r.squared))</code></pre>
+<div id="finally-fit-a-model-with-ef_money-and-pf_expression_control-as-exposures-and-hf_score-as-outcome.-compare-the-slope-and-r2-from-the-models-from-q1.-could-ef_money-be-a-confounder" class="section level4">
+<h4>10. Finally fit a model with <code>ef_money</code> and <code>pf_expression_control</code> as exposures and <code>hf_score</code> as outcome. Compare the slope and <span class="math inline">\(R^2\)</span> from the models from Q1. Could <code>ef_money</code> be a confounder?</h4>
+<pre class="r"><code># fit the model
+Q10 &lt;- lm(hf_score~ef_money + pf_expression_control, data=hfi_2016)
+#view most important information
+view_param(list(Q8, Q10))</code></pre>
+<pre><code>               m1      m2
+slope       0.368   0.318
+r_squared   0.629   0.774
+p_value   2.7e-36 7.7e-19</code></pre>
+<p>Since we can see that the <span class="math inline">\(R^2\)</span> value increases when both variables are included, but this increase is not very strong, we can assume that the addition of ef_money does not explain much more variance, and thus it might be the case that ef_money is a confounder of pf_expression_control.</p>
 </div>
-<div id="use-a-linear-regression-model-and-scatter-plot-with-ef_money-as-exposure-and-pf_expression_control-as-outcome-to-study-whether-ef_money-has-an-association-with-pf_expression_control-as-well.-this-might-validate-our-finding-that-ef_money-is-a-confounder-between-pf_expression_control-as-exposure-and" class="section level2">
-<h2>11. Use a linear regression model (and scatter plot) with <code>ef_money</code> as exposure and <code>pf_expression_control</code> as outcome, to study whether <code>ef_money</code> has an association with <code>pf_expression_control</code> as well. This might validate our finding that <code>ef_money</code> is a confounder between <code>pf_expression_control</code> as exposure and</h2>
+<div id="use-a-linear-regression-model-and-scatter-plot-with-ef_money-as-exposure-and-pf_expression_control-as-outcome-to-study-whether-ef_money-has-an-association-with-pf_expression_control-as-well.-this-might-validate-our-finding-that-ef_money-is-a-confounder-between-pf_expression_control-as-exposure-and" class="section level4">
+<h4>11. Use a linear regression model (and scatter plot) with <code>ef_money</code> as exposure and <code>pf_expression_control</code> as outcome, to study whether <code>ef_money</code> has an association with <code>pf_expression_control</code> as well. This might validate our finding that <code>ef_money</code> is a confounder between <code>pf_expression_control</code> as exposure and</h4>
 <p><code>hf_score</code> as outcome from Q6.</p>
-<pre class="r"><code>linreg_final &lt;- lm(pf_expression_control~ef_money, data=hfi_2016)
-summary(linreg_final)</code></pre>
-<pre><code>
-Call:
-lm(formula = pf_expression_control ~ ef_money, data = hfi_2016)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--4.9646 -1.4800 -0.0326  1.8818  4.5114 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  -0.1945     1.0179  -0.191    0.849    
-ef_money      0.6283     0.1218   5.160 7.22e-07 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 2.159 on 160 degrees of freedom
-Multiple R-squared:  0.1427,    Adjusted R-squared:  0.1373 
-F-statistic: 26.63 on 1 and 160 DF,  p-value: 7.223e-07</code></pre>
-<pre class="r"><code>ggplot(hfi_2016, aes(x=ef_money, 
+<pre class="r"><code># fit the model
+Q11 &lt;- lm(pf_expression_control~ef_money, data=hfi_2016)
+# plot the results 
+ggplot(hfi_2016, aes(x=ef_money, 
                  y=pf_expression_control))+
   geom_point()+
-  geom_smooth(method=&#39;lm&#39;, se=F)</code></pre>
+  geom_smooth(method=&#39;lm&#39;, se=F)+
+  ggtitle(label = &#39;Association of pf_expression control and ef_money&#39;)+
+  geom_text(inherit.aes=FALSE, 
+            x=2.5, 
+            y=8, 
+            label=paste(rownames(view_param(list(Q11))),
+                        view_param(list(Q11))[[1]],
+                        sep=&#39;: &#39;)%&gt;% paste(., collapse = &#39;\n&#39;))</code></pre>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="figure/index.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>comp &lt;- mutate(comp, `expr_ctrl~money`=linreg_final$coefficients[1:2] %&gt;% 
-                 as.numeric() %&gt;%
-                 c(.,summary(linreg_final)$r.squared))
-
-comp</code></pre>
-<pre><code># A tibble: 3 x 5
-  category  `score~expr_ctrl` `score~expr_ctr~ `score~expr_ctr~ `expr_ctrl~mone~
-  &lt;chr&gt;                 &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-1 intercept             5.05             6.05             2.79            -0.195
-2 slope                 0.368            0.275            0.296            0.628
-3 r_squared             0.629            0.754            0.774            0.143</code></pre>
+<p>The slope indicates a positive correlation between the two variables. This correlation is highly significant according to the resulting p-value. Thus, the null hypothesis, which states that there is no relationship between the two variables, can be rejected. What means that the variables ef_money and pf_expression_control are most likely confounders and should not be used together for the prediction of the total human freedom score.</p>
+<p><img src="https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero.jpg?raw=true" width="70%" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -700,19 +719,19 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] broom_0.7.3         forcats_0.5.0       stringr_1.4.0      
- [4] dplyr_1.0.2         purrr_0.3.4         readr_1.4.0        
- [7] tidyr_1.1.2         tibble_3.0.4        ggplot2_3.3.3      
-[10] tidyverse_1.3.0     openintro_2.0.0     usdata_0.1.0       
-[13] cherryblossom_0.1.0 airports_0.1.0      workflowr_1.6.2    
+ [1] forcats_0.5.0       stringr_1.4.0       dplyr_1.0.2        
+ [4] purrr_0.3.4         readr_1.4.0         tidyr_1.1.2        
+ [7] tibble_3.0.4        ggplot2_3.3.3       tidyverse_1.3.0    
+[10] openintro_2.0.0     usdata_0.1.0        cherryblossom_0.1.0
+[13] airports_0.1.0      workflowr_1.6.2    
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.5        lattice_0.20-41   lubridate_1.7.9.2 ps_1.5.0         
- [5] utf8_1.1.4        assertthat_0.2.1  rprojroot_2.0.2   digest_0.6.27    
- [9] R6_2.5.0          cellranger_1.1.0  backports_1.2.0   reprex_0.3.0     
-[13] evaluate_0.14     httr_1.4.2        pillar_1.4.7      rlang_0.4.9      
-[17] readxl_1.3.1      rstudioapi_0.13   whisker_0.4       Matrix_1.2-18    
-[21] rmarkdown_2.6     labeling_0.4.2    splines_4.0.3     munsell_0.5.0    
+ [5] assertthat_0.2.1  rprojroot_2.0.2   digest_0.6.27     R6_2.5.0         
+ [9] cellranger_1.1.0  backports_1.2.0   reprex_0.3.0      evaluate_0.14    
+[13] httr_1.4.2        pillar_1.4.7      rlang_0.4.9       readxl_1.3.1     
+[17] rstudioapi_0.13   whisker_0.4       Matrix_1.2-18     rmarkdown_2.6    
+[21] labeling_0.4.2    splines_4.0.3     munsell_0.5.0     broom_0.7.3      
 [25] compiler_4.0.3    httpuv_1.5.5      modelr_0.1.8      xfun_0.19        
 [29] pkgconfig_2.0.3   mgcv_1.8-33       htmltools_0.5.0   tidyselect_1.1.0 
 [33] fansi_0.4.1       crayon_1.3.4      dbplyr_2.0.0      withr_2.3.0      
@@ -723,6 +742,7 @@ loaded via a namespace (and not attached):
 [53] ellipsis_0.3.1    generics_0.1.0    vctrs_0.3.6       tools_4.0.3      
 [57] glue_1.4.2        hms_0.5.3         yaml_2.2.1        colorspace_2.0-0 
 [61] rvest_0.3.6       knitr_1.30        haven_2.3.1      </code></pre>
+</div>
 </div>
 </div>
 
