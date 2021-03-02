@@ -8,11 +8,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
-
-
-
-
 
 
 ## Preparation
@@ -83,7 +78,7 @@ Since we can see that the $R^2$ value increases when both variables are included
 `hf_score` as outcome from Q6.
 
 
-```{r}
+```{r, message=FALSE}
 # fit the model
 Q11 <- lm(pf_expression_control~ef_money, data=hfi_2016)
 # plot the results 
