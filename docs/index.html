@@ -426,16 +426,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetreeeff4cfa2b682b4e31551d2e561caa64fbdadad57targetblankeff4cfaa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/marcorheini/assignment_Rcourse/tree/eff4cfa2b682b4e31551d2e561caa64fbdadad57" target="_blank">eff4cfa</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetreee1fd1e0c5bd082f9dfd3725505873781f525c206targetblanke1fd1e0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/marcorheini/assignment_Rcourse/tree/e1fd1e0c5bd082f9dfd3725505873781f525c206" target="_blank">e1fd1e0</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetreeeff4cfa2b682b4e31551d2e561caa64fbdadad57targetblankeff4cfaa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommarcorheiniassignmentRcoursetreee1fd1e0c5bd082f9dfd3725505873781f525c206targetblanke1fd1e0a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/marcorheini/assignment_Rcourse/tree/eff4cfa2b682b4e31551d2e561caa64fbdadad57" target="_blank">eff4cfa</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/marcorheini/assignment_Rcourse/tree/e1fd1e0c5bd082f9dfd3725505873781f525c206" target="_blank">e1fd1e0</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -481,6 +481,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/marcorheini/assignment_Rcourse/blob/e1fd1e0c5bd082f9dfd3725505873781f525c206/analysis/index.Rmd" target="_blank">e1fd1e0</a>
+</td>
+<td>
+marcorheini
+</td>
+<td>
+2021-03-02
+</td>
+<td>
+workflowr::wflow_publish(files = “analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/marcorheini/assignment_Rcourse/d94291fe2ea0ec1a5e1b286a89bc2c933c3e155f/docs/index.html" target="_blank">d94291f</a>
+</td>
+<td>
+marcorheini
+</td>
+<td>
+2021-03-02
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -675,7 +709,6 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>Welcome to my research website.</p>
 <div id="preparation" class="section level2">
 <h2>Preparation</h2>
 <pre class="r"><code>library(openintro)
@@ -749,7 +782,6 @@ ggplot(hfi_2016, aes(x=ef_money,
             label=paste(rownames(view_param(list(Q11))),
                         view_param(list(Q11))[[1]],
                         sep=&#39;: &#39;)%&gt;% paste(., collapse = &#39;\n&#39;))</code></pre>
-<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="figure/index.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The slope indicates a positive correlation between the two variables. This correlation is highly significant according to the resulting p-value. Thus, the null hypothesis, which states that there is no relationship between the two variables, can be rejected. What means that the variables ef_money and pf_expression_control are most likely confounders and should not be used together for the prediction of the total human freedom score.</p>
 <p><img src="https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero.jpg?raw=true" width="70%" style="display: block; margin: auto;" /></p>
