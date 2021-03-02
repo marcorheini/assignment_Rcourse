@@ -20,98 +20,95 @@ Welcome to my research website.
 ```{r}
 library(openintro)
 library(tidyverse)
-library(broom)
 ```
 
 
+## Assignment
 
-
-
-
-## 7. Use the hfi dataset from the `openintro` package
+#### 7. Use the hfi dataset from the `openintro` package
 ```{r}
 data(hfi)
-
+# we will use only the data from 2016 to avoid problems
 hfi_2016 <- hfi %>% filter(year=='2016')
-
 ```
 
-## 8. Fit a new model that uses  `pf_expression_control` to predict `hf_score`, or the total human freedom score.
+#### 8. Fit a new model that uses  `pf_expression_control` to predict `hf_score`, or the total human freedom score.
 ```{r}
-
-linreg <- lm(hf_score~pf_expression_control, data=hfi_2016)
-
-tidy(linreg)
+# fit the model
+Q8 <- lm(hf_score~pf_expression_control, data=hfi_2016)
 ```
 
-
-
-
-## 9. Again add region to the model from Q4. Compare the slope and $R^2$ with the model from Q4.
+#### 9. Again add region to the model from Q4. Compare the slope and $R^2$ with the model from Q4.
 
 ```{r}
-
-
-linreg_region <- lm(hf_score~pf_expression_control + region, data=hfi_2016)
-
-comp <- tibble(category=c('intercept', 'slope', 'r_squared'),
-              `score~expr_ctrl`=linreg$coefficients %>% 
-                 as.numeric() %>%
-                 c(.,summary(linreg)$r.squared),
-              `score~expr_ctrl+region`=linreg_region$coefficients[1:2] %>% 
-                 as.numeric()%>%
-                 c(.,summary(linreg_region)$r.squared),)
-
-comp
-
+# define a function that views the most important information
+view_param <- function(models){
+  sapply(models, function(x){
+    c(x$coefficients[2] %>% round(3), # slope
+      summary(x)$r.squared %>% round(3), # r_squared
+      summary(x)$coefficients[2,4] %>% formatC(digits = 2) # p-value
+    )  %>% 
+      set_names(nm=c('slope', 'r_squared', 'p_value')) 
+  }) %>% 
+    as.data.frame() %>%
+    set_names(nm=paste0('m', c(1:length(models))))
+}
+# the model from Q4 was to predict the total score by using the variable ef_money
+Q4 <- lm(hf_score~ef_money, data=hfi_2016)
+# fit the new models containing the region as exposure
+Q9 <- lm(hf_score~ef_money + region, data=hfi_2016)
+#view most important information
+view_param(list(Q4, Q9))
 ```
 
 
-The slope decreased for the model that includes the "region" while the R-squared value increased 
+The slope decreased for the model that includes the "region" while the $R^2$ value increased 
 
 
-## 10. Finally fit a model with `ef_money` and `pf_expression_control` as exposures and `hf_score` as outcome.  Compare the slope and $R^2$ from the models from Q1. Could `ef_money` be a confounder? 
+#### 10. Finally fit a model with `ef_money` and `pf_expression_control` as exposures and `hf_score` as outcome.  Compare the slope and $R^2$ from the models from Q1. Could `ef_money` be a confounder? 
 
 ```{r}
-
-linreg_money <- lm(hf_score~pf_expression_control + ef_money, data=hfi_2016)
-
-comp <- mutate(comp, `score~expr_ctrl+money`=linreg_money$coefficients[1:2] %>% 
-                 as.numeric() %>%
-                 c(.,summary(linreg_money)$r.squared))
-
+# fit the model
+Q10 <- lm(hf_score~ef_money + pf_expression_control, data=hfi_2016)
+#view most important information
+view_param(list(Q8, Q10))
 ```
 
 
+Since we can see that the $R^2$ value increases when both variables are included, but this increase is not very strong, we can assume that the addition of ef_money does not explain much more variance, and thus it might be the case that ef_money is a confounder of pf_expression_control.
 
 
-## 11. Use a linear regression model (and scatter plot) with  `ef_money` as exposure and `pf_expression_control` as outcome, to study whether `ef_money` has an association with `pf_expression_control` as well. This might validate our finding that `ef_money` is a confounder between  `pf_expression_control` as exposure and 
+
+#### 11. Use a linear regression model (and scatter plot) with  `ef_money` as exposure and `pf_expression_control` as outcome, to study whether `ef_money` has an association with `pf_expression_control` as well. This might validate our finding that `ef_money` is a confounder between  `pf_expression_control` as exposure and 
 `hf_score` as outcome from Q6.
 
 
 ```{r}
-
-linreg_final <- lm(pf_expression_control~ef_money, data=hfi_2016)
-summary(linreg_final)
-
-
+# fit the model
+Q11 <- lm(pf_expression_control~ef_money, data=hfi_2016)
+# plot the results 
 ggplot(hfi_2016, aes(x=ef_money, 
                  y=pf_expression_control))+
   geom_point()+
-  geom_smooth(method='lm', se=F)
+  geom_smooth(method='lm', se=F)+
+  ggtitle(label = 'Association of pf_expression control and ef_money')+
+  geom_text(inherit.aes=FALSE, 
+            x=2.5, 
+            y=8, 
+            label=paste(rownames(view_param(list(Q11))),
+                        view_param(list(Q11))[[1]],
+                        sep=': ')%>% paste(., collapse = '\n'))
 
-comp <- mutate(comp, `expr_ctrl~money`=linreg_final$coefficients[1:2] %>% 
-                 as.numeric() %>%
-                 c(.,summary(linreg_final)$r.squared))
 
-comp
 
 ```
 
+The slope indicates a positive correlation between the two variables. This correlation is highly significant according to the resulting p-value. Thus, the null hypothesis, which states that there is no relationship between the two variables, can be rejected. What means that the variables ef_money and pf_expression_control are most likely confounders and should not be used together for the prediction of the total human freedom score.
 
 
 
-
-
+```{r, echo = FALSE, out.width = "70%", eval=TRUE}
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero.jpg?raw=true", dpi = 100)
+```
 
 
