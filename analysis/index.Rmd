@@ -17,7 +17,7 @@ Welcome to my research website.
 
 ## Preparation
 
-```{r}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(openintro)
 library(tidyverse)
 ```
